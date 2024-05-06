@@ -8,11 +8,22 @@ fn formatTarget(allocator: std.mem.Allocator, target: std.Target) []const u8 {
     return std.fmt.allocPrint(allocator, "{s}-{s}-{s}", .{ arch, os, abi }) catch @panic("OOM");
 }
 
+const LibType = enum {
+    /// WIP
+    bindings,
+    /// WIP
+    wrapper,
+};
+
 pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
     const shared = b.option(bool, "shared", "Whether to dynamically link SDL, default: true") orelse false;
+    const libType = b.option(LibType, "type", "Type of the library, default: bindings") orelse .bindings;
+
+    const bOptions = b.addOptions();
+    bOptions.addOption(LibType, "libType", libType);
 
     const name = formatTarget(b.allocator, target.result);
     defer b.allocator.free(name);
@@ -28,6 +39,7 @@ pub fn build(b: *std.Build) !void {
         .optimize = optimize,
         .link_libc = true,
     });
+    lib.addImport("buildOptions", bOptions.createModule());
     lib.addIncludePath(b.path("include"));
     lib.addLibraryPath(b.path(lib_path));
     lib.linkSystemLibrary("SDL2", .{
