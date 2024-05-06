@@ -1,0 +1,5 @@
+SDL_rwops.h
+SDL_joystick.h
+SDL_gamecontroller.h
+SDL_video.h
+SDL_render.h

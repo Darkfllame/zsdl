@@ -1,6 +1,8 @@
-pub const SDL_bool = c_int;
-pub const SDL_FALSE: SDL_bool = 0;
-pub const SDL_TRUE: SDL_bool = 1;
+pub const SDL_bool = enum(c_uint) {
+    SDL_FALSE,
+    SDL_TRUE,
+};
+pub usingnamespace SDL_bool;
 
 /// translation reference
 const c = @cImport({

@@ -1,16 +1,18 @@
-pub const SDL_errorcode = c_int;
-pub const SDL_ENOMEM: SDL_errorcode = 0;
-pub const SDL_EFREAD: SDL_errorcode = 1;
-pub const SDL_EFWRITE: SDL_errorcode = 2;
-pub const SDL_EFSEEK: SDL_errorcode = 3;
-pub const SDL_UNSUPPORTED: SDL_errorcode = 4;
-pub const SDL_LASTERROR: SDL_errorcode = 5;
+pub const SDL_errorcode = enum(c_uint) {
+    SDL_ENOMEM,
+    SDL_EFREAD,
+    SDL_EFWRITE,
+    SDL_EFSEEK,
+    SDL_UNSUPPORTED,
+    SDL_LASTERROR,
+};
+pub usingnamespace SDL_errorcode;
 
 pub inline fn SDL_OutOfMemory() c_int {
-    return SDL_Error(SDL_ENOMEM);
+    return SDL_Error(.SDL_ENOMEM);
 }
 pub inline fn SDL_Unsupported() c_int {
-    return SDL_Error(SDL_UNSUPPORTED);
+    return SDL_Error(.SDL_UNSUPPORTED);
 }
 pub inline fn SDL_InvalidParamError(param: [*c]const u8) c_int {
     return SDL_SetError("Parameter %s is invalid", param);
