@@ -19,7 +19,7 @@ pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
-    const shared = b.option(bool, "shared", "Whether to dynamically link SDL, default: true") orelse false;
+    const shared = b.option(bool, "shared", "Whether to dynamically link SDL, default: false") orelse false;
     const libType = b.option(LibType, "type", "Type of the library, default: bindings") orelse .bindings;
 
     if (target.result.abi == .msvc and !shared) @panic("MSVC currently doesn't support static SDL library");
@@ -44,12 +44,22 @@ pub fn build(b: *std.Build) !void {
     lib.addImport("buildOptions", bOptions.createModule());
     lib.addIncludePath(b.path("include"));
     lib.addLibraryPath(b.path(lib_path));
-    if (target.result.os.tag == .linux) {
+    if (target.result.os.tag == .windows) {
+        lib.linkSystemLibrary(if (shared) "SDL2.dll" else "SDL2", .{
+            .preferred_link_mode = if (shared) .dynamic else .static,
+        });
+        lib.linkSystemLibrary("Gdi32", .{});
+        lib.linkSystemLibrary("Cfgmgr32", .{});
+        lib.linkSystemLibrary("Ole32", .{});
+        lib.linkSystemLibrary("Winmm", .{});
+        lib.linkSystemLibrary("Imm32", .{});
+        lib.linkSystemLibrary("Version", .{});
+        lib.linkSystemLibrary("Setupapi", .{});
+        lib.linkSystemLibrary("OleAut32", .{});
+    } else {
         lib.linkSystemLibrary("SDL2", .{
             .preferred_link_mode = if (shared) .dynamic else .static,
         });
-    } else {
-        lib.linkSystemLibrary(if (shared) "SDL2.dll" else "SDL2", .{});
     }
     if (shared) {
         const libExt = switch (target.result.os.tag) {
@@ -78,10 +88,12 @@ pub fn build(b: *std.Build) !void {
         lib.linkLibrary(emptyLib);
     }
 
-    const remCache = b.addRemoveDirTree("zig-cache");
     const remOut = b.addRemoveDirTree("zig-out");
+    if (target.result.os.tag == .linux) {
+        const remCache = b.addRemoveDirTree("zig-cache");
+        b.getUninstallStep().dependOn(&remCache.step);
+    }
     b.getUninstallStep().dependOn(&remOut.step);
-    b.getUninstallStep().dependOn(&remCache.step);
 
     // demo shit
     {
