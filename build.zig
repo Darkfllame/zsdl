@@ -22,6 +22,8 @@ pub fn build(b: *std.Build) !void {
     const shared = b.option(bool, "shared", "Whether to dynamically link SDL, default: true") orelse false;
     const libType = b.option(LibType, "type", "Type of the library, default: bindings") orelse .bindings;
 
+    if (target.result.abi == .msvc and !shared) @panic("MSVC currently doesn't support static SDL library");
+
     const bOptions = b.addOptions();
     bOptions.addOption(LibType, "libType", libType);
 
@@ -42,31 +44,44 @@ pub fn build(b: *std.Build) !void {
     lib.addImport("buildOptions", bOptions.createModule());
     lib.addIncludePath(b.path("include"));
     lib.addLibraryPath(b.path(lib_path));
-    lib.linkSystemLibrary("SDL2", .{
-        .needed = true,
-        .preferred_link_mode = if (shared) .dynamic else .static,
-    });
+    if (target.result.os.tag == .linux) {
+        lib.linkSystemLibrary("SDL2", .{
+            .preferred_link_mode = if (shared) .dynamic else .static,
+        });
+    } else {
+        lib.linkSystemLibrary(if (shared) "SDL2.dll" else "SDL2", .{});
+    }
     if (shared) {
         const libExt = switch (target.result.os.tag) {
-            .linux => ".so",
             .windows => ".dll",
+            .linux => ".so",
             .macos => ".dylib",
             else => @panic("Unsupported os for shared library"),
         };
-        const sdlLibName = std.mem.join(b.allocator, "", &.{ "libSDL2", libExt }) catch @panic("OOM");
+
+        const sdlLibName = std.mem.join(b.allocator, "", &.{ "SDL2", libExt }) catch @panic("OOM");
         defer b.allocator.free(sdlLibName);
+
         const path = b.pathJoin(&.{ lib_path, sdlLibName });
         defer b.allocator.free(path);
+
+        const istep = b.addInstallBinFile(b.path(path), sdlLibName);
+
         const emptyLib = b.addStaticLibrary(.{
             .name = "installShared",
             .root_source_file = b.path("src/sharedLib.zig"),
             .target = target,
             .optimize = optimize,
         });
-        const istep = b.addInstallBinFile(b.path(path), sdlLibName);
         emptyLib.step.dependOn(&istep.step);
+
         lib.linkLibrary(emptyLib);
     }
+
+    const remCache = b.addRemoveDirTree("zig-cache");
+    const remOut = b.addRemoveDirTree("zig-out");
+    b.getUninstallStep().dependOn(&remOut.step);
+    b.getUninstallStep().dependOn(&remCache.step);
 
     // demo shit
     {
@@ -80,11 +95,8 @@ pub fn build(b: *std.Build) !void {
 
         b.installArtifact(demo);
 
-        const remOut = b.addRemoveDirTree("zig-out");
-        b.getUninstallStep().dependOn(&remOut.step);
-
+        // TODO: Can't 'zig build run' on LRC's PCs
         const run_cmd = b.addRunArtifact(demo);
-
         run_cmd.step.dependOn(b.getInstallStep());
 
         if (b.args) |args| {

@@ -2,8 +2,6 @@ const common = @import("common.zig");
 
 const Sint32 = common.Sint32;
 
-pub usingnamespace @import("scancode.zig");
-
 pub const SDLK_SCANCODE_MASK = 1 << 30;
 pub inline fn SDL_SCANCODE_TO_KEYCODE(X: common.SDL_Scancode) SDL_Keycode {
     return @enumFromInt(@intFromEnum(X) | SDLK_SCANCODE_MASK);
@@ -255,26 +253,23 @@ pub const SDL_Keycode = enum(c_uint) {
     SDLK_CALL = SDL_SCANCODE_TO_KEYCODE(common.SDL_SCANCODE_CALL),
     SDLK_ENDCALL = SDL_SCANCODE_TO_KEYCODE(common.SDL_SCANCODE_ENDCALL),
 };
-pub usingnamespace SDL_Keycode;
 
-pub const SDL_Keymod = enum(c_uint) {
-    KMOD_NONE = 0x0000,
-    KMOD_LSHIFT = 0x0001,
-    KMOD_RSHIFT = 0x0002,
-    KMOD_LCTRL = 0x0040,
-    KMOD_RCTRL = 0x0080,
-    KMOD_LALT = 0x0100,
-    KMOD_RALT = 0x0200,
-    KMOD_LGUI = 0x0400,
-    KMOD_RGUI = 0x0800,
-    KMOD_NUM = 0x1000,
-    KMOD_CAPS = 0x2000,
-    KMOD_MODE = 0x4000,
-    KMOD_SCROLL = 0x8000,
-    KMOD_CTRL = @intFromEnum(SDL_Keymod.KMOD_LCTRL) | @intFromEnum(SDL_Keymod.KMOD_RCTRL),
-    KMOD_SHIFT = @intFromEnum(SDL_Keymod.KMOD_LSHIFT) | @intFromEnum(SDL_Keymod.KMOD_RSHIFT),
-    KMOD_ALT = @intFromEnum(SDL_Keymod.KMOD_LALT) | @intFromEnum(SDL_Keymod.KMOD_RALT),
-    KMOD_GUI = @intFromEnum(SDL_Keymod.KMOD_LGUI) | @intFromEnum(SDL_Keymod.KMOD_RGUI),
-    KMOD_RESERVED = @intFromEnum(SDL_Keymod.KMOD_SCROLL),
-};
-pub usingnamespace SDL_Keymod;
+pub const SDL_Keymod = c_uint;
+pub const KMOD_NONE: SDL_Keymod = 0x0000;
+pub const KMOD_LSHIFT: SDL_Keymod = 0x0001;
+pub const KMOD_RSHIFT: SDL_Keymod = 0x0002;
+pub const KMOD_LCTRL: SDL_Keymod = 0x0040;
+pub const KMOD_RCTRL: SDL_Keymod = 0x0080;
+pub const KMOD_LALT: SDL_Keymod = 0x0100;
+pub const KMOD_RALT: SDL_Keymod = 0x0200;
+pub const KMOD_LGUI: SDL_Keymod = 0x0400;
+pub const KMOD_RGUI: SDL_Keymod = 0x0800;
+pub const KMOD_NUM: SDL_Keymod = 0x1000;
+pub const KMOD_CAPS: SDL_Keymod = 0x2000;
+pub const KMOD_MODE: SDL_Keymod = 0x4000;
+pub const KMOD_SCROLL: SDL_Keymod = 0x8000;
+pub const KMOD_CTRL = @intFromEnum(SDL_Keymod.KMOD_LCTRL) | @intFromEnum(SDL_Keymod.KMOD_RCTRL);
+pub const KMOD_SHIFT = @intFromEnum(SDL_Keymod.KMOD_LSHIFT) | @intFromEnum(SDL_Keymod.KMOD_RSHIFT);
+pub const KMOD_ALT = @intFromEnum(SDL_Keymod.KMOD_LALT) | @intFromEnum(SDL_Keymod.KMOD_RALT);
+pub const KMOD_GUI = @intFromEnum(SDL_Keymod.KMOD_LGUI) | @intFromEnum(SDL_Keymod.KMOD_RGUI);
+pub const KMOD_RESERVED = @intFromEnum(SDL_Keymod.KMOD_SCROLL);

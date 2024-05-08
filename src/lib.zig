@@ -1,6 +1,6 @@
 const buildOptins = @import("buildOptions");
 
 pub usingnamespace switch (buildOptins.libType) {
-    .bindings => @import("lib/common.zig"),
+    .bindings => @import("bindings/common.zig"),
     .wrapper => @compileError("Wrapper not yet implemented"),
 };

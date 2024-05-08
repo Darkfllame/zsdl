@@ -8,28 +8,24 @@ const SDL_Surface = common.SDL_Surface;
 
 pub const SDL_Cursor = opaque {};
 
-pub const SDL_SystemCursor = enum(c_uint) {
-    SDL_SYSTEM_CURSOR_ARROW,
-    SDL_SYSTEM_CURSOR_IBEAM,
-    SDL_SYSTEM_CURSOR_WAIT,
-    SDL_SYSTEM_CURSOR_CROSSHAIR,
-    SDL_SYSTEM_CURSOR_WAITARROW,
-    SDL_SYSTEM_CURSOR_SIZENWSE,
-    SDL_SYSTEM_CURSOR_SIZENESW,
-    SDL_SYSTEM_CURSOR_SIZEWE,
-    SDL_SYSTEM_CURSOR_SIZENS,
-    SDL_SYSTEM_CURSOR_SIZEALL,
-    SDL_SYSTEM_CURSOR_NO,
-    SDL_SYSTEM_CURSOR_HAND,
-    SDL_NUM_SYSTEM_CURSORS,
-};
-pub usingnamespace SDL_SystemCursor;
+pub const SDL_SystemCursor = c_uint;
+pub const SDL_SYSTEM_CURSOR_ARROW: SDL_SystemCursor = 0;
+pub const SDL_SYSTEM_CURSOR_IBEAM: SDL_SystemCursor = 1;
+pub const SDL_SYSTEM_CURSOR_WAIT: SDL_SystemCursor = 2;
+pub const SDL_SYSTEM_CURSOR_CROSSHAIR: SDL_SystemCursor = 3;
+pub const SDL_SYSTEM_CURSOR_WAITARROW: SDL_SystemCursor = 4;
+pub const SDL_SYSTEM_CURSOR_SIZENWSE: SDL_SystemCursor = 5;
+pub const SDL_SYSTEM_CURSOR_SIZENESW: SDL_SystemCursor = 6;
+pub const SDL_SYSTEM_CURSOR_SIZEWE: SDL_SystemCursor = 7;
+pub const SDL_SYSTEM_CURSOR_SIZENS: SDL_SystemCursor = 8;
+pub const SDL_SYSTEM_CURSOR_SIZEALL: SDL_SystemCursor = 9;
+pub const SDL_SYSTEM_CURSOR_NO: SDL_SystemCursor = 10;
+pub const SDL_SYSTEM_CURSOR_HAND: SDL_SystemCursor = 11;
+pub const SDL_NUM_SYSTEM_CURSORS: SDL_SystemCursor = 12;
 
-pub const SDL_MouseWheelDirection = enum(c_uint) {
-    SDL_MOUSEWHEEL_NORMAL,
-    SDL_MOUSEWHEEL_FLIPPED,
-};
-pub usingnamespace SDL_MouseWheelDirection;
+pub const SDL_MouseWheelDirection = c_uint;
+pub const SDL_MOUSEWHEEL_NORMAL: SDL_MouseWheelDirection = 0;
+pub const SDL_MOUSEWHEEL_FLIPPED: SDL_MouseWheelDirection = 1;
 
 pub const SDL_BUTTON_LEFT: Uint32 = 1;
 pub const SDL_BUTTON_MIDDLE: Uint32 = 2;

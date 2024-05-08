@@ -16,80 +16,73 @@ const SDL_TouchID = common.SDL_TouchID;
 const SDL_FingerID = common.SDL_FingerID;
 const SDL_GestureID = common.SDL_GestureID;
 
-pub usingnamespace @import("keyboard.zig");
-pub usingnamespace @import("mouse.zig");
-pub usingnamespace @import("joystick.zig");
-pub usingnamespace @import("gamecontroller.zig");
-pub usingnamespace @import("gesture.zig");
-pub usingnamespace @import("touch.zig");
-
 pub const SDL_RELEASED = 0;
 pub const SDL_PRESSED = 0;
 
-pub const SDL_EventType = enum(Uint32) {
-    SDL_FIRSTEVENT = 0,
-    SDL_QUIT = 0x100,
-    SDL_APP_TERMINATING,
-    SDL_APP_LOWMEMORY,
-    SDL_APP_WILLENTERBACKGROUND,
-    SDL_APP_DIDENTERBACKGROUND,
-    SDL_APP_WILLENTERFOREGROUND,
-    SDL_APP_DIDENTERFOREGROUND,
-    SDL_LOCALECHANGED,
-    SDL_DISPLAYEVENT = 0x150,
-    SDL_WINDOWEVENT = 0x200,
-    SDL_SYSWMEVENT,
-    SDL_KEYDOWN = 0x300,
-    SDL_KEYUP,
-    SDL_TEXTEDITING,
-    SDL_TEXTINPUT,
-    SDL_KEYMAPCHANGED,
-    SDL_TEXTEDITING_EXT,
-    SDL_MOUSEMOTION = 0x400,
-    SDL_MOUSEBUTTONDOWN,
-    SDL_MOUSEBUTTONUP,
-    SDL_MOUSEWHEEL,
-    SDL_JOYAXISMOTION = 0x600,
-    SDL_JOYBALLMOTION,
-    SDL_JOYHATMOTION,
-    SDL_JOYBUTTONDOWN,
-    SDL_JOYBUTTONUP,
-    SDL_JOYDEVICEADDED,
-    SDL_JOYDEVICEREMOVED,
-    SDL_JOYBATTERYUPDATED,
-    SDL_CONTROLLERAXISMOTION = 0x650,
-    SDL_CONTROLLERBUTTONDOWN,
-    SDL_CONTROLLERBUTTONUP,
-    SDL_CONTROLLERDEVICEADDED,
-    SDL_CONTROLLERDEVICEREMOVED,
-    SDL_CONTROLLERDEVICEREMAPPED,
-    SDL_CONTROLLERTOUCHPADDOWN,
-    SDL_CONTROLLERTOUCHPADMOTION,
-    SDL_CONTROLLERTOUCHPADUP,
-    SDL_CONTROLLERSENSORUPDATE,
-    SDL_CONTROLLERUPDATECOMPLETE_RESERVED_FOR_SDL3,
-    SDL_CONTROLLERSTEAMHANDLEUPDATED,
-    SDL_FINGERDOWN = 0x700,
-    SDL_FINGERUP,
-    SDL_FINGERMOTION,
-    SDL_DOLLARGESTURE = 0x800,
-    SDL_DOLLARRECORD,
-    SDL_MULTIGESTURE,
-    SDL_CLIPBOARDUPDATE = 0x900,
-    SDL_DROPFILE = 0x1000,
-    SDL_DROPTEXT,
-    SDL_DROPBEGIN,
-    SDL_DROPCOMPLETE,
-    SDL_AUDIODEVICEADDED = 0x1100,
-    SDL_AUDIODEVICEREMOVED,
-    SDL_SENSORUPDATE = 0x1200,
-    SDL_RENDER_TARGETS_RESET = 0x2000,
-    SDL_RENDER_DEVICE_RESET,
-    SDL_POLLSENTINEL = 0x7F00,
-    SDL_USEREVENT = 0x8000,
-    SDL_LASTEVENT = 0xFFFF,
-};
-pub usingnamespace SDL_EventType;
+pub const SDL_EventType = Uint32;
+//#region SDL_EventType constants
+pub const SDL_FIRSTEVENT: SDL_EventType = 0;
+pub const SDL_QUIT: SDL_EventType = 0x100;
+pub const SDL_APP_TERMINATING: SDL_EventType = 0x101;
+pub const SDL_APP_LOWMEMORY: SDL_EventType = 0x102;
+pub const SDL_APP_WILLENTERBACKGROUND: SDL_EventType = 0x103;
+pub const SDL_APP_DIDENTERBACKGROUND: SDL_EventType = 0x104;
+pub const SDL_APP_WILLENTERFOREGROUND: SDL_EventType = 0x105;
+pub const SDL_APP_DIDENTERFOREGROUND: SDL_EventType = 0x106;
+pub const SDL_LOCALECHANGED: SDL_EventType = 0x107;
+pub const SDL_DISPLAYEVENT: SDL_EventType = 0x150;
+pub const SDL_WINDOWEVENT: SDL_EventType = 0x200;
+pub const SDL_SYSWMEVENT: SDL_EventType = 0x201;
+pub const SDL_KEYDOWN: SDL_EventType = 0x300;
+pub const SDL_KEYUP: SDL_EventType = 0x301;
+pub const SDL_TEXTEDITING: SDL_EventType = 0x302;
+pub const SDL_TEXTINPUT: SDL_EventType = 0x303;
+pub const SDL_KEYMAPCHANGED: SDL_EventType = 0x304;
+pub const SDL_TEXTEDITING_EXT: SDL_EventType = 0x305;
+pub const SDL_MOUSEMOTION: SDL_EventType = 0x400;
+pub const SDL_MOUSEBUTTONDOWN: SDL_EventType = 0x401;
+pub const SDL_MOUSEBUTTONUP: SDL_EventType = 0x402;
+pub const SDL_MOUSEWHEEL: SDL_EventType = 0x403;
+pub const SDL_JOYAXISMOTION: SDL_EventType = 0x600;
+pub const SDL_JOYBALLMOTION: SDL_EventType = 0x601;
+pub const SDL_JOYHATMOTION: SDL_EventType = 0x602;
+pub const SDL_JOYBUTTONDOWN: SDL_EventType = 0x603;
+pub const SDL_JOYBUTTONUP: SDL_EventType = 0x604;
+pub const SDL_JOYDEVICEADDED: SDL_EventType = 0x605;
+pub const SDL_JOYDEVICEREMOVED: SDL_EventType = 0x606;
+pub const SDL_JOYBATTERYUPDATED: SDL_EventType = 0x607;
+pub const SDL_CONTROLLERAXISMOTION: SDL_EventType = 0x650;
+pub const SDL_CONTROLLERBUTTONDOWN: SDL_EventType = 0x651;
+pub const SDL_CONTROLLERBUTTONUP: SDL_EventType = 0x652;
+pub const SDL_CONTROLLERDEVICEADDED: SDL_EventType = 0x653;
+pub const SDL_CONTROLLERDEVICEREMOVED: SDL_EventType = 0x654;
+pub const SDL_CONTROLLERDEVICEREMAPPED: SDL_EventType = 0x655;
+pub const SDL_CONTROLLERTOUCHPADDOWN: SDL_EventType = 0x656;
+pub const SDL_CONTROLLERTOUCHPADMOTION: SDL_EventType = 0x657;
+pub const SDL_CONTROLLERTOUCHPADUP: SDL_EventType = 0x658;
+pub const SDL_CONTROLLERSENSORUPDATE: SDL_EventType = 0x659;
+pub const SDL_CONTROLLERUPDATECOMPLETE_RESERVED_FOR_SDL3: SDL_EventType = 0x65A;
+pub const SDL_CONTROLLERSTEAMHANDLEUPDATED: SDL_EventType = 0x65B;
+pub const SDL_FINGERDOWN: SDL_EventType = 0x700;
+pub const SDL_FINGERUP: SDL_EventType = 0x701;
+pub const SDL_FINGERMOTION: SDL_EventType = 0x702;
+pub const SDL_DOLLARGESTURE: SDL_EventType = 0x800;
+pub const SDL_DOLLARRECORD: SDL_EventType = 0x801;
+pub const SDL_MULTIGESTURE: SDL_EventType = 0x802;
+pub const SDL_CLIPBOARDUPDATE: SDL_EventType = 0x900;
+pub const SDL_DROPFILE: SDL_EventType = 0x1000;
+pub const SDL_DROPTEXT: SDL_EventType = 0x1001;
+pub const SDL_DROPBEGIN: SDL_EventType = 0x1001;
+pub const SDL_DROPCOMPLETE: SDL_EventType = 0x1003;
+pub const SDL_AUDIODEVICEADDED: SDL_EventType = 0x1100;
+pub const SDL_AUDIODEVICEREMOVED: SDL_EventType = 0x1101;
+pub const SDL_SENSORUPDATE: SDL_EventType = 0x1200;
+pub const SDL_RENDER_TARGETS_RESET: SDL_EventType = 0x2000;
+pub const SDL_RENDER_DEVICE_RESET: SDL_EventType = 0x2001;
+pub const SDL_POLLSENTINEL: SDL_EventType = 0x7F00;
+pub const SDL_USEREVENT: SDL_EventType = 0x8000;
+pub const SDL_LASTEVENT: SDL_EventType = 0xFFFF;
+//#endregion
 
 //#region SDL_Event Sub-types
 pub const SDL_CommonEvent = extern struct {
@@ -402,12 +395,10 @@ pub const SDL_Event = extern union {
     }
 };
 
-pub const SDL_eventaction = enum(c_uint) {
-    SDL_ADDEVENT,
-    SDL_PEEKEVENT,
-    SDL_GETEVENT,
-};
-pub usingnamespace SDL_eventaction;
+pub const SDL_eventaction = c_uint;
+pub const SDL_ADDEVENT: SDL_eventaction = 0;
+pub const SDL_PEEKEVENT: SDL_eventaction = 1;
+pub const SDL_GETEVENT: SDL_eventaction = 2;
 
 pub const SDL_QUERY: Uint32 = -1;
 pub const SDL_IGNORE: Uint32 = 0;
@@ -416,13 +407,13 @@ pub const SDL_ENABLE: Uint32 = 1;
 
 pub const SDL_EventFilter = *const fn (userdata: ?*anyopaque, event: *SDL_Event) c_int;
 
-pub inline fn SDL_GetEventState(@"type": Uint32) Uint8 {
+pub inline fn SDL_GetEventState(@"type": SDL_EventType) Uint8 {
     return SDL_EventState(@"type", SDL_QUERY);
 }
 
 pub extern fn SDL_PumpEvents() void;
 pub extern fn SDL_PeepEvents(
-    events: [*c]SDL_Event,
+    events: ?[*]SDL_Event,
     numevents: c_int,
     action: SDL_eventaction,
     mintype: SDL_EventType,
@@ -440,5 +431,5 @@ pub extern fn SDL_SetEventFilter(filter: ?SDL_EventFilter, userdata: ?*anyopaque
 pub extern fn SDL_AddEventWatch(filter: ?SDL_EventFilter, userdata: ?*anyopaque) SDL_bool;
 pub extern fn SDL_DelEventWatch(filter: SDL_EventFilter, userdata: ?*anyopaque) void;
 pub extern fn SDL_FilterEvents(filter: ?SDL_EventFilter, userdata: ?*anyopaque) void;
-pub extern fn SDL_EventState(@"type": Uint32, state: c_int) Uint8;
+pub extern fn SDL_EventState(@"type": SDL_EventType, state: c_int) Uint8;
 pub extern fn SDL_RegisterEvents(numevents: c_int) Uint32;

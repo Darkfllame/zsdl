@@ -1,12 +1,10 @@
-pub const SDL_errorcode = enum(c_uint) {
-    SDL_ENOMEM,
-    SDL_EFREAD,
-    SDL_EFWRITE,
-    SDL_EFSEEK,
-    SDL_UNSUPPORTED,
-    SDL_LASTERROR,
-};
-pub usingnamespace SDL_errorcode;
+pub const SDL_errorcode = c_uint;
+pub const SDL_ENOMEM: SDL_errorcode = 0;
+pub const SDL_EFREAD: SDL_errorcode = 1;
+pub const SDL_EFWRITE: SDL_errorcode = 2;
+pub const SDL_EFSEEK: SDL_errorcode = 3;
+pub const SDL_UNSUPPORTED: SDL_errorcode = 4;
+pub const SDL_LASTERROR: SDL_errorcode = 5;
 
 pub inline fn SDL_OutOfMemory() c_int {
     return SDL_Error(.SDL_ENOMEM);
