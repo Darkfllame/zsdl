@@ -41,6 +41,7 @@ pub usingnamespace @import("sensor.zig");
 pub usingnamespace @import("surface.zig");
 pub usingnamespace @import("timer.zig");
 pub usingnamespace @import("touch.zig");
+pub usingnamespace @import("video.zig");
 
 comptime {
     @setEvalBranchQuota(@truncate(-1));
