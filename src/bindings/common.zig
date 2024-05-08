@@ -34,6 +34,7 @@ pub usingnamespace @import("mouse.zig");
 pub usingnamespace @import("pixels.zig");
 pub usingnamespace @import("quit.zig");
 pub usingnamespace @import("rect.zig");
+pub usingnamespace @import("render.zig");
 pub usingnamespace @import("rwops.zig");
 pub usingnamespace @import("scancode.zig");
 pub usingnamespace @import("sdl.zig");
