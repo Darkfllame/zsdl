@@ -22,6 +22,16 @@ pub fn build(b: *std.Build) !void {
     const shared = b.option(bool, "shared", "Whether to dynamically link SDL, default: false") orelse false;
     const libType = b.option(LibType, "type", "Type of the library, default: bindings") orelse .bindings;
 
+    if (b.option([]const u8, "install_prefix", "Only for library users")) |pref| {
+        b.resolveInstallPrefix(pref, .{
+            .exe_dir = null,
+            .include_dir = null,
+            .lib_dir = null,
+        });
+    }
+
+    std.debug.print("{s}\n", .{b.install_path});
+
     if (target.result.abi == .msvc and !shared) @panic("MSVC currently doesn't support static SDL library");
 
     const bOptions = b.addOptions();

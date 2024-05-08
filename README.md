@@ -9,6 +9,8 @@ and replacing `<commit>` by a commit hash or a branch name (i.e: main) to have t
 After fetching the library, you'll need to add:
 ```zig
 const zsdl_dep = b.dependency("zsdl", .{
+    // this is mandatory if you use shared, at least if you want your dll to be installed correctly
+    .install_prefix = b.install_prefix,
     .target = target,
     .optimize = optimize,
     // optional, default: false. Whether to dynamically link SDL.
