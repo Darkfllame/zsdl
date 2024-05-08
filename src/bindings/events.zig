@@ -381,19 +381,17 @@ pub const SDL_Event = extern union {
     dgesture: SDL_DollarGestureEvent,
     drop: SDL_DropEvent,
 
-    padding: [
-        switch (@sizeOf(?*anyopaque)) {
-            0...8 => 56,
-            16 => 64,
-            else => 3 * @sizeOf(?*anyopaque),
-        }
-    ]Uint8,
-
-    comptime {
-        if (@sizeOf(SDL_Event) != @sizeOf(@TypeOf(@as(?*SDL_Event, null).padding)))
-            @compileError("Binary compatibility broken");
-    }
+    padding: [paddingSize]Uint8,
 };
+const paddingSize = switch (@sizeOf(?*anyopaque)) {
+    0...8 => 56,
+    16 => 64,
+    else => 3 * @sizeOf(?*anyopaque),
+};
+comptime {
+    if (@sizeOf(SDL_Event) != paddingSize)
+        @compileError("Binary compatibility broken");
+}
 
 pub const SDL_eventaction = c_uint;
 pub const SDL_ADDEVENT: SDL_eventaction = 0;
