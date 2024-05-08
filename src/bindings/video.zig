@@ -33,8 +33,7 @@ pub const SDL_DisplayMode = extern struct {
     refresh_rate: c_int = @import("std").mem.zeroes(c_int),
     driverdata: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
 };
-pub const struct_SDL_Window = opaque {};
-pub const SDL_Window = struct_SDL_Window;
+pub const SDL_Window = opaque {};
 
 pub const SDL_WindowFlags = c_uint;
 pub const SDL_WINDOW_FULLSCREEN: SDL_WindowFlags = 0x00000001;

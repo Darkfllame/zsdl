@@ -14,6 +14,8 @@ pub fn main() !void {
         0,
     ).?;
     defer zsdl.SDL_DestroyWindow(window);
+    const renderer = zsdl.SDL_CreateRenderer(window, -1, 0).?;
+    defer zsdl.SDL_DestroyRenderer(renderer);
 
     mainloop: while (true) {
         {
@@ -24,5 +26,18 @@ pub fn main() !void {
                 }
             }
         }
+
+        _ = zsdl.SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        _ = zsdl.SDL_RenderClear(renderer);
+
+        _ = zsdl.SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        _ = zsdl.SDL_RenderFillRect(renderer, &.{
+            .x = 0,
+            .y = 0,
+            .w = 64,
+            .h = 64,
+        });
+
+        zsdl.SDL_RenderPresent(renderer);
     }
 }
