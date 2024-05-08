@@ -16,6 +16,7 @@ pub const Uint32 = u32;
 pub const Sint64 = i64;
 pub const Uint64 = u64;
 
+pub usingnamespace @import("aduio.zig");
 pub usingnamespace @import("clipboard.zig");
 pub usingnamespace @import("error.zig");
 pub usingnamespace @import("events.zig");

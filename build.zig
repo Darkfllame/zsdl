@@ -107,7 +107,6 @@ pub fn build(b: *std.Build) !void {
 
         b.installArtifact(demo);
 
-        // TODO: Can't 'zig build run' on LRC's PCs
         const run_cmd = b.addRunArtifact(demo);
         run_cmd.step.dependOn(b.getInstallStep());
 
