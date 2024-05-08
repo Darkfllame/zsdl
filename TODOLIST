@@ -1,2 +1,3 @@
 SDL_video.h
 SDL_render.h
+SDL_audio.h
