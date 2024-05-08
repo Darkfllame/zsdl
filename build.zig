@@ -23,11 +23,7 @@ pub fn build(b: *std.Build) !void {
     const libType = b.option(LibType, "type", "Type of the library, default: bindings") orelse .bindings;
 
     if (b.option([]const u8, "install_prefix", "Only for library users")) |pref| {
-        b.resolveInstallPrefix(pref, .{
-            .exe_dir = null,
-            .include_dir = null,
-            .lib_dir = null,
-        });
+        b.resolveInstallPrefix(pref, .{});
     }
 
     std.debug.print("{s}\n", .{b.install_path});
