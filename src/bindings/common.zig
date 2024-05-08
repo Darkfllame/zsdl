@@ -20,6 +20,7 @@ pub inline fn SDL_FOURCC(a: u8, b: u8, c: u8, d: u8) Uint32 {
 }
 
 pub usingnamespace @import("aduio.zig");
+pub usingnamespace @import("blendmode.zig");
 pub usingnamespace @import("clipboard.zig");
 pub usingnamespace @import("error.zig");
 pub usingnamespace @import("events.zig");
@@ -32,10 +33,12 @@ pub usingnamespace @import("keycode.zig");
 pub usingnamespace @import("mouse.zig");
 pub usingnamespace @import("pixels.zig");
 pub usingnamespace @import("quit.zig");
+pub usingnamespace @import("rect.zig");
 pub usingnamespace @import("rwops.zig");
 pub usingnamespace @import("scancode.zig");
 pub usingnamespace @import("sdl.zig");
 pub usingnamespace @import("sensor.zig");
+pub usingnamespace @import("surface.zig");
 pub usingnamespace @import("timer.zig");
 pub usingnamespace @import("touch.zig");
 
