@@ -26,8 +26,6 @@ pub fn build(b: *std.Build) !void {
         b.resolveInstallPrefix(pref, .{});
     }
 
-    std.debug.print("{s}\n", .{b.install_path});
-
     if (target.result.abi == .msvc and !shared) @panic("MSVC currently doesn't support static SDL library");
 
     const bOptions = b.addOptions();
