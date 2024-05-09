@@ -45,8 +45,8 @@ comptime {
     @setEvalBranchQuota(@truncate(-1));
     @import("std").testing.refAllDeclsRecursive(@This());
 
-    const translationRef = @cImport({
-        @cInclude("SDL.h");
-    });
-    _ = translationRef;
+    // const translationRef = @cImport({
+    //     @cInclude("SDL.h");
+    // });
+    // _ = translationRef;
 }
