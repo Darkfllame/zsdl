@@ -2,10 +2,6 @@ pub const SDL_bool = c_uint;
 pub const SDL_FALSE: SDL_bool = 0;
 pub const SDL_TRUE: SDL_bool = 1;
 
-const translationRef = @cImport({
-    @cInclude("SDL.h");
-});
-
 pub const Sint8 = i8;
 pub const Uint8 = u8;
 pub const Sint16 = i16;
@@ -48,4 +44,9 @@ pub usingnamespace @import("video.zig");
 comptime {
     @setEvalBranchQuota(@truncate(-1));
     @import("std").testing.refAllDeclsRecursive(@This());
+
+    const translationRef = @cImport({
+        @cInclude("SDL.h");
+    });
+    _ = translationRef;
 }
