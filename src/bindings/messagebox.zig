@@ -21,7 +21,8 @@ pub const SDL_MESSAGEBOX_COLOR_TEXT: SDL_MessageBoxColorType = 1;
 pub const SDL_MESSAGEBOX_COLOR_BUTTON_BORDER: SDL_MessageBoxColorType = 2;
 pub const SDL_MESSAGEBOX_COLOR_BUTTON_BACKGROUND: SDL_MessageBoxColorType = 3;
 pub const SDL_MESSAGEBOX_COLOR_BUTTON_SELECTED: SDL_MessageBoxColorType = 4;
-pub const SDL_MESSAGEBOX_COLOR_MAX: SDL_MessageBoxColorType = 5;
+
+pub const SDL_MESSAGEBOX_COLOR_MAX = 5;
 
 pub const SDL_MessageBoxButtonData = extern struct {
     flags: SDL_MessageBoxButtonFlags,
@@ -34,7 +35,7 @@ pub const SDL_MessageBoxColor = extern struct {
     b: Uint8,
 };
 pub const SDL_MessageBoxColorScheme = extern struct {
-    colors: [5]SDL_MessageBoxColor,
+    colors: [SDL_MESSAGEBOX_COLOR_MAX]SDL_MessageBoxColor,
 };
 pub const SDL_MessageBoxData = extern struct {
     flags: SDL_MessageBoxFlags,
@@ -46,5 +47,5 @@ pub const SDL_MessageBoxData = extern struct {
     colorScheme: ?*const SDL_MessageBoxColorScheme,
 };
 
-pub extern fn SDL_ShowMessageBox(messageboxdata: *const SDL_MessageBoxData, buttonid: *c_int) c_int;
-pub extern fn SDL_ShowSimpleMessageBox(flags: Uint32, title: [*:0]const u8, message: [*:0]const u8, window: ?*SDL_Window) c_int;
+pub extern fn SDL_ShowMessageBox(messageboxdata: *const SDL_MessageBoxData, buttonid: ?*c_int) c_int;
+pub extern fn SDL_ShowSimpleMessageBox(flags: SDL_MessageBoxFlags, title: [*:0]const u8, message: [*:0]const u8, window: ?*SDL_Window) c_int;
