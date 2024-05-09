@@ -1,1 +1,1 @@
-*.zig eol=lf
+*.zig *.md *.zon *.h text=auto eol=lf
