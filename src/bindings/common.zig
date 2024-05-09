@@ -30,6 +30,7 @@ pub usingnamespace @import("guid.zig");
 pub usingnamespace @import("joystick.zig");
 pub usingnamespace @import("keyboard.zig");
 pub usingnamespace @import("keycode.zig");
+pub usingnamespace @import("messagebox.zig");
 pub usingnamespace @import("mouse.zig");
 pub usingnamespace @import("pixels.zig");
 pub usingnamespace @import("quit.zig");

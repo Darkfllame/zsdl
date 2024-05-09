@@ -39,15 +39,31 @@ pub fn build(b: *std.Build) !void {
     });
     defer b.allocator.free(lib_path);
 
+    const bindingsLib = b.createModule(.{
+        .root_source_file = b.path("src/bindings/common.zig"),
+        .target = target,
+        .optimize = optimize,
+        .imports = &.{},
+    });
+
     const lib = b.addModule("zsdl", .{
         .root_source_file = b.path("src/lib.zig"),
         .target = target,
         .optimize = optimize,
         .link_libc = true,
+        .imports = &.{
+            .{
+                .name = "bindings",
+                .module = bindingsLib,
+            },
+        },
     });
     lib.addImport("buildOptions", bOptions.createModule());
     lib.addIncludePath(b.path("include"));
     lib.addLibraryPath(b.path(lib_path));
+    if (libType == .wrapper) {
+        lib.addImport("bindings", bindingsLib);
+    }
     if (target.result.os.tag == .windows) {
         lib.linkSystemLibrary(if (shared) "SDL2.dll" else "SDL2", .{
             .preferred_link_mode = if (shared) .dynamic else .static,
@@ -103,7 +119,10 @@ pub fn build(b: *std.Build) !void {
     {
         const demo = b.addExecutable(.{
             .name = "zsdl",
-            .root_source_file = b.path("src/demo.zig"),
+            .root_source_file = b.path(if (libType == .bindings)
+                "src/bindingsDemo.zig"
+            else
+                "src/wrapperDemo.zig"),
             .target = target,
             .optimize = optimize,
         });
