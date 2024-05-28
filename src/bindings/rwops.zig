@@ -1,15 +1,15 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 const builtin = @import("builtin");
 
-const SDL_bool = common.SDL_bool;
-const Sint8 = common.Sint8;
-const Uint8 = common.Uint8;
-const Sint16 = common.Sint16;
-const Uint16 = common.Uint16;
-const Sint32 = common.Sint32;
-const Uint32 = common.Uint32;
-const Sint64 = common.Sint64;
-const Uint64 = common.Uint64;
+const SDL_bool = sdl.SDL_bool;
+const Sint8 = sdl.Sint8;
+const Uint8 = sdl.Uint8;
+const Sint16 = sdl.Sint16;
+const Uint16 = sdl.Uint16;
+const Sint32 = sdl.Sint32;
+const Uint32 = sdl.Uint32;
+const Sint64 = sdl.Sint64;
+const Uint64 = sdl.Uint64;
 
 pub const SDL_RWOPS_UNKNOWN: Uint32 = 0;
 pub const SDL_RWOPS_WINFILE: Uint32 = 1;

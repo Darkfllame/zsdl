@@ -1,11 +1,11 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint16 = common.Uint16;
-const Uint32 = common.Uint32;
-const SDL_Rect = common.SDL_Rect;
-const SDL_Point = common.SDL_Point;
-const SDL_Surface = common.SDL_Surface;
+const SDL_bool = sdl.SDL_bool;
+const Uint16 = sdl.Uint16;
+const Uint32 = sdl.Uint32;
+const SDL_Rect = sdl.SDL_Rect;
+const SDL_Point = sdl.SDL_Point;
+const SDL_Surface = sdl.SDL_Surface;
 
 pub const SDL_WINDOWPOS_UNDEFINED_MASK = 0x1FFF0000;
 pub const SDL_WINDOWPOS_UNDEFINED = SDL_WINDOWPOS_UNDEFINED_DISPLAY(0);

@@ -1,16 +1,16 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint8 = common.Uint8;
-const Uint32 = common.Uint32;
-const SDL_FPoint = common.SDL_FPoint;
-const SDL_Color = common.SDL_Color;
-const SDL_Window = common.SDL_Window;
-const SDL_Surface = common.SDL_Surface;
-const SDL_BlendMode = common.SDL_BlendMode;
-const SDL_Rect = common.SDL_Rect;
-const SDL_FRect = common.SDL_FRect;
-const SDL_Point = common.SDL_Point;
+const SDL_bool = sdl.SDL_bool;
+const Uint8 = sdl.Uint8;
+const Uint32 = sdl.Uint32;
+const SDL_FPoint = sdl.SDL_FPoint;
+const SDL_Color = sdl.SDL_Color;
+const SDL_Window = sdl.SDL_Window;
+const SDL_Surface = sdl.SDL_Surface;
+const SDL_BlendMode = sdl.SDL_BlendMode;
+const SDL_Rect = sdl.SDL_Rect;
+const SDL_FRect = sdl.SDL_FRect;
+const SDL_Point = sdl.SDL_Point;
 
 pub const SDL_RendererInfo = extern struct {
     name: [*]const u8,

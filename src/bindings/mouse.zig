@@ -1,10 +1,10 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint8 = common.Uint8;
-const Uint32 = common.Uint32;
-const SDL_Window = common.SDL_Window;
-const SDL_Surface = common.SDL_Surface;
+const SDL_bool = sdl.SDL_bool;
+const Uint8 = sdl.Uint8;
+const Uint32 = sdl.Uint32;
+const SDL_Window = sdl.SDL_Window;
+const SDL_Surface = sdl.SDL_Surface;
 
 pub const SDL_Cursor = opaque {};
 

@@ -1,10 +1,10 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint8 = common.Uint8;
-const Uint16 = common.Uint16;
-const Uint32 = common.Uint32;
-const SDL_FOURCC = common.SDL_FOURCC;
+const SDL_bool = sdl.SDL_bool;
+const Uint8 = sdl.Uint8;
+const Uint16 = sdl.Uint16;
+const Uint32 = sdl.Uint32;
+const SDL_FOURCC = sdl.SDL_FOURCC;
 
 pub const SDL_PixelType = c_uint;
 pub const SDL_PIXELTYPE_UNKNOWN: SDL_PixelType = 0;

@@ -1,16 +1,14 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint8 = common.Uint8;
-const Uint16 = common.Uint16;
-const Uint32 = common.Uint32;
-const SDL_Scancode = common.SDL_Scancode;
-const SDL_Keycode = common.SDL_Keycode;
-const SDL_Keymod = common.SDL_Keymod;
-const SDL_Window = common.SDL_Window;
-const SDL_Rect = common.SDL_Rect;
-
-pub usingnamespace @import("keycode.zig");
+const SDL_bool = sdl.SDL_bool;
+const Uint8 = sdl.Uint8;
+const Uint16 = sdl.Uint16;
+const Uint32 = sdl.Uint32;
+const SDL_Scancode = sdl.SDL_Scancode;
+const SDL_Keycode = sdl.SDL_Keycode;
+const SDL_Keymod = sdl.SDL_Keymod;
+const SDL_Window = sdl.SDL_Window;
+const SDL_Rect = sdl.SDL_Rect;
 
 pub const SDL_Keysym = extern struct {
     scancode: SDL_Scancode,

@@ -1,20 +1,20 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Sint8 = common.Sint8;
-const Uint8 = common.Uint8;
-const Sint16 = common.Sint16;
-const Uint16 = common.Uint16;
-const Sint32 = common.Sint32;
-const Uint32 = common.Uint32;
-const Sint64 = common.Sint64;
-const Uint64 = common.Uint64;
-const SDL_Keysym = common.SDL_Keysym;
-const SDL_JoystickID = common.SDL_JoystickID;
-const SDL_JoystickPowerLevel = common.SDL_JoystickPowerLevel;
-const SDL_TouchID = common.SDL_TouchID;
-const SDL_FingerID = common.SDL_FingerID;
-const SDL_GestureID = common.SDL_GestureID;
+const SDL_bool = sdl.SDL_bool;
+const Sint8 = sdl.Sint8;
+const Uint8 = sdl.Uint8;
+const Sint16 = sdl.Sint16;
+const Uint16 = sdl.Uint16;
+const Sint32 = sdl.Sint32;
+const Uint32 = sdl.Uint32;
+const Sint64 = sdl.Sint64;
+const Uint64 = sdl.Uint64;
+const SDL_Keysym = sdl.SDL_Keysym;
+const SDL_JoystickID = sdl.SDL_JoystickID;
+const SDL_JoystickPowerLevel = sdl.SDL_JoystickPowerLevel;
+const SDL_TouchID = sdl.SDL_TouchID;
+const SDL_FingerID = sdl.SDL_FingerID;
+const SDL_GestureID = sdl.SDL_GestureID;
 
 pub const SDL_RELEASED = 0;
 pub const SDL_PRESSED = 0;

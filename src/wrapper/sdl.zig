@@ -69,13 +69,13 @@ pub const InitFlags = packed struct {
         }
     }
 };
-pub const InitState = union(enum) {
+pub const InitState = packed union {
     state: bool,
     flags: InitFlags,
 
-    pub fn format(self: InitState, comptime _: []const u8, _: std.fmt.FormatOptions, stream: anytype) !void {
-        switch (self) {
-            inline else => |v| try stream.print("{any}", .{v}),
+    comptime {
+        if (@sizeOf(InitState) != @sizeOf(sdl.Uint32)) {
+            @compileError("InitState should be the same size as SDL's Uint32");
         }
     }
 };
@@ -97,11 +97,17 @@ pub inline fn quitSubSystem(flags: InitFlags) void {
 /// Return is tagges with "flags" if the given flags were empty, else return wether the
 /// given flags were initialized
 pub inline fn wasInit(flags: InitFlags) InitState {
-    const res = sdl.SDL_WasInit(@bitCast(flags));
-    return if (@as(sdl.Uint32, @bitCast(flags)) == 0)
-        .{ .flags = @bitCast(res) }
-    else
-        .{ .state = res != 0 };
+    return @bitCast(sdl.SDL_WasInit(@bitCast(flags)));
 }
 
+pub usingnamespace @import("blendmode.zig");
+pub usingnamespace @import("clipboard.zig");
 pub usingnamespace @import("error.zig");
+pub usingnamespace @import("gesture.zig");
+pub usingnamespace @import("guid.zig");
+pub usingnamespace @import("keyboard.zig");
+pub usingnamespace @import("keycode.zig");
+pub usingnamespace @import("rect.zig");
+pub usingnamespace @import("rwops.zig");
+pub usingnamespace @import("scancode.zig");
+pub usingnamespace @import("touch.zig");

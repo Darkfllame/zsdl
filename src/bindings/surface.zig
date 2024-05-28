@@ -1,14 +1,14 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint8 = common.Uint8;
-const Uint32 = common.Uint32;
-const SDL_BlendMode = common.SDL_BlendMode;
-const SDL_PixelFormat = common.SDL_PixelFormat;
-const SDL_Rect = common.SDL_Rect;
-const SDL_Palette = common.SDL_Palette;
-const SDL_RWops = common.SDL_RWops;
-const SDL_RWFromFile = common.SDL_RWFromFile;
+const SDL_bool = sdl.SDL_bool;
+const Uint8 = sdl.Uint8;
+const Uint32 = sdl.Uint32;
+const SDL_BlendMode = sdl.SDL_BlendMode;
+const SDL_PixelFormat = sdl.SDL_PixelFormat;
+const SDL_Rect = sdl.SDL_Rect;
+const SDL_Palette = sdl.SDL_Palette;
+const SDL_RWops = sdl.SDL_RWops;
+const SDL_RWFromFile = sdl.SDL_RWFromFile;
 
 pub const SDL_YUV_CONVERSION_MODE = c_uint;
 pub const SDL_YUV_CONVERSION_JPEG: SDL_YUV_CONVERSION_MODE = 0;

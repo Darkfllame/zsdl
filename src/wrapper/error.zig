@@ -11,13 +11,13 @@ pub const ErrorCode = enum(c_uint) {
     LastError,
 };
 
-pub inline fn SDL_OutOfMemory() root.Error {
+pub inline fn outOfMemoryError() root.Error {
     return @"error"(.NoMem);
 }
-pub inline fn SDL_Unsupported() root.Error {
+pub inline fn unsupportedError() root.Error {
     return @"error"(.Unsupported);
 }
-pub inline fn SDL_InvalidParamError(param: []const u8) c_int {
+pub inline fn invalidParamError(param: []const u8) c_int {
     return setError("Parameter %.*s is invalid", .{ param.len, param });
 }
 

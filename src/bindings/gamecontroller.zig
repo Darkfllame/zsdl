@@ -1,16 +1,16 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Uint8 = common.Uint8;
-const Sint16 = common.Sint16;
-const Uint16 = common.Uint16;
-const Uint32 = common.Uint32;
-const Uint64 = common.Uint64;
-const SDL_RWops = common.SDL_RWops;
-const SDL_JoystickGUID = common.SDL_JoystickGUID;
-const SDL_JoystickID = common.SDL_JoystickID;
-const SDL_Joystick = common.SDL_Joystick;
-const SDL_SensorType = common.SDL_SensorType;
+const SDL_bool = sdl.SDL_bool;
+const Uint8 = sdl.Uint8;
+const Sint16 = sdl.Sint16;
+const Uint16 = sdl.Uint16;
+const Uint32 = sdl.Uint32;
+const Uint64 = sdl.Uint64;
+const SDL_RWops = sdl.SDL_RWops;
+const SDL_JoystickGUID = sdl.SDL_JoystickGUID;
+const SDL_JoystickID = sdl.SDL_JoystickID;
+const SDL_Joystick = sdl.SDL_Joystick;
+const SDL_SensorType = sdl.SDL_SensorType;
 
 pub const SDL_GameController = opaque {};
 pub const SDL_GameControllerButtonBind = extern struct {
@@ -84,7 +84,7 @@ pub const SDL_CONTROLLER_BUTTON_TOUCHPAD: SDL_GameControllerButton = 20;
 pub const SDL_CONTROLLER_BUTTON_MAX: SDL_GameControllerButton = 21;
 
 pub inline fn SDL_GameControllerAddMappingsFromFile(file: [*]const u8) c_int {
-    return SDL_GameControllerAddMappingsFromRW(common.SDL_RWFromFile(file, "rb"), common.SDL_TRUE);
+    return SDL_GameControllerAddMappingsFromRW(sdl.SDL_RWFromFile(file, "rb"), sdl.SDL_TRUE);
 }
 
 pub extern fn SDL_GameControllerAddMappingsFromRW(rw: *SDL_RWops, freerw: c_int) c_int;

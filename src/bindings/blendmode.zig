@@ -1,5 +1,3 @@
-const common = @import("common.zig");
-
 pub const SDL_BlendMode = c_uint;
 pub const SDL_BLENDMODE_NONE: SDL_BlendMode = 0x00000000;
 pub const SDL_BLENDMODE_BLEND: SDL_BlendMode = 0x00000001;

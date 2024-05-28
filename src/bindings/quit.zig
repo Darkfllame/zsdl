@@ -1,12 +1,12 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
 pub inline fn SDL_QuitRequested() bool {
-    common.SDL_PumpEvents();
-    return common.SDL_PeepEvents(
+    sdl.SDL_PumpEvents();
+    return sdl.SDL_PeepEvents(
         null,
         0,
-        common.SDL_PEEKEVENT,
-        common.SDL_QUIT,
-        common.SDL_QUIT,
+        sdl.SDL_PEEKEVENT,
+        sdl.SDL_QUIT,
+        sdl.SDL_QUIT,
     ) > 0;
 }

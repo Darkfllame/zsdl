@@ -1,6 +1,6 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
+const SDL_bool = sdl.SDL_bool;
 
 pub const SDL_Point = extern struct {
     x: c_int,
@@ -46,12 +46,12 @@ pub inline fn SDL_FRectEquals(a: *const SDL_FRect, b: *const SDL_FRect) bool {
 }
 
 pub extern fn SDL_HasIntersection(A: *const SDL_Rect, B: *const SDL_Rect) SDL_bool;
-pub extern fn SDL_IntersectRect(A: *const SDL_Rect, B: *const SDL_Rect, result: ?*SDL_Rect) SDL_bool;
-pub extern fn SDL_UnionRect(A: *const SDL_Rect, B: *const SDL_Rect, result: ?*SDL_Rect) void;
-pub extern fn SDL_EnclosePoints(points: [*]const SDL_Point, count: c_int, clip: *const SDL_Rect, result: ?*SDL_Rect) SDL_bool;
-pub extern fn SDL_IntersectRectAndLine(rect: *const SDL_Rect, X1: ?*c_int, Y1: ?*c_int, X2: ?*c_int, Y2: ?*c_int) SDL_bool;
+pub extern fn SDL_IntersectRect(A: *const SDL_Rect, B: *const SDL_Rect, result: *SDL_Rect) SDL_bool;
+pub extern fn SDL_UnionRect(A: *const SDL_Rect, B: *const SDL_Rect, result: *SDL_Rect) void;
+pub extern fn SDL_EnclosePoints(points: [*]const SDL_Point, count: c_int, clip: ?*const SDL_Rect, result: *SDL_Rect) SDL_bool;
+pub extern fn SDL_IntersectRectAndLine(rect: *const SDL_Rect, X1: *c_int, Y1: *c_int, X2: *c_int, Y2: *c_int) SDL_bool;
 pub extern fn SDL_HasIntersectionF(A: *const SDL_FRect, B: *const SDL_FRect) SDL_bool;
-pub extern fn SDL_IntersectFRect(A: *const SDL_FRect, B: *const SDL_FRect, result: ?*SDL_FRect) SDL_bool;
-pub extern fn SDL_UnionFRect(A: *const SDL_FRect, B: *const SDL_FRect, result: ?*SDL_FRect) void;
-pub extern fn SDL_EncloseFPoints(points: [*]const SDL_FPoint, count: c_int, clip: *const SDL_FRect, result: ?*SDL_FRect) SDL_bool;
-pub extern fn SDL_IntersectFRectAndLine(rect: *const SDL_FRect, X1: ?*f32, Y1: ?*f32, X2: ?*f32, Y2: ?*f32) SDL_bool;
+pub extern fn SDL_IntersectFRect(A: *const SDL_FRect, B: *const SDL_FRect, result: *SDL_FRect) SDL_bool;
+pub extern fn SDL_UnionFRect(A: *const SDL_FRect, B: *const SDL_FRect, result: *SDL_FRect) void;
+pub extern fn SDL_EncloseFPoints(points: [*]const SDL_FPoint, count: c_int, clip: ?*const SDL_FRect, result: *SDL_FRect) SDL_bool;
+pub extern fn SDL_IntersectFRectAndLine(rect: *const SDL_FRect, X1: *f32, Y1: *f32, X2: *f32, Y2: *f32) SDL_bool;

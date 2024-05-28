@@ -1,9 +1,9 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const SDL_bool = common.SDL_bool;
-const Sint32 = common.Sint32;
-const Uint32 = common.Uint32;
-const Uint64 = common.Uint64;
+const SDL_bool = sdl.SDL_bool;
+const Sint32 = sdl.Sint32;
+const Uint32 = sdl.Uint32;
+const Uint64 = sdl.Uint64;
 
 pub const SDL_TimerCallback = *const fn (interval: Uint32, param: ?*anyopaque) Uint32;
 pub const SDL_TimerID = c_int;

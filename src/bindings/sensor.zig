@@ -1,7 +1,7 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const Sint32 = common.Sint32;
-const Uint64 = common.Uint64;
+const Sint32 = sdl.Sint32;
+const Uint64 = sdl.Uint64;
 
 pub const SDL_Sensor = opaque {};
 pub const SDL_SensorID = Sint32;
@@ -31,7 +31,7 @@ pub extern fn SDL_SensorGetName(sensor: *SDL_Sensor) ?[*]const u8;
 pub extern fn SDL_SensorGetType(sensor: *SDL_Sensor) SDL_SensorType;
 pub extern fn SDL_SensorGetNonPortableType(sensor: *SDL_Sensor) c_int;
 pub extern fn SDL_SensorGetInstanceID(sensor: *SDL_Sensor) SDL_SensorID;
-pub extern fn SDL_SensorGetData(sensor: *SDL_Sensor, data: ?*f32, num_values: c_int) c_int;
-pub extern fn SDL_SensorGetDataWithTimestamp(sensor: *SDL_Sensor, timestamp: ?*Uint64, data: ?*f32, num_values: c_int) c_int;
+pub extern fn SDL_SensorGetData(sensor: *SDL_Sensor, data: [*]f32, num_values: c_int) c_int;
+pub extern fn SDL_SensorGetDataWithTimestamp(sensor: *SDL_Sensor, timestamp: *Uint64, data: [*]f32, num_values: c_int) c_int;
 pub extern fn SDL_SensorClose(sensor: *SDL_Sensor) void;
 pub extern fn SDL_SensorUpdate() void;

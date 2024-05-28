@@ -1,7 +1,7 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const Uint32 = common.Uint32;
-const Sint64 = common.Sint64;
+const Uint32 = sdl.Uint32;
+const Sint64 = sdl.Sint64;
 
 pub const SDL_TouchID = Sint64;
 pub const SDL_FingerID = Sint64;

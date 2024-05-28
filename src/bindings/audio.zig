@@ -1,10 +1,10 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const Uint8 = common.Uint8;
-const Uint16 = common.Uint16;
-const Uint32 = common.Uint32;
-const SDL_RWops = common.SDL_RWops;
-const SDL_RWFromFile = common.SDL_RWFromFile;
+const Uint8 = sdl.Uint8;
+const Uint16 = sdl.Uint16;
+const Uint32 = sdl.Uint32;
+const SDL_RWops = sdl.SDL_RWops;
+const SDL_RWFromFile = sdl.SDL_RWFromFile;
 
 pub const SDL_AudioFormat = Uint16;
 pub const SDL_AudioDeviceID = Uint32;
@@ -27,7 +27,7 @@ pub const SDL_AudioSpec = extern struct {
     callback: ?SDL_AudioCallback,
     userdata: ?*anyopaque,
 };
-pub const SDL_AudioCVT = extern struct {
+const SDL_AudioCVT = extern struct {
     needed: c_int align(1),
     src_format: SDL_AudioFormat align(1),
     dst_format: SDL_AudioFormat align(1),

@@ -1,8 +1,8 @@
-const common = @import("common.zig");
+const sdl = @import("sdl");
 
-const Uint8 = common.Uint8;
-const Uint32 = common.Uint32;
-const SDL_Window = common.SDL_Window;
+const Uint8 = sdl.Uint8;
+const Uint32 = sdl.Uint32;
+const SDL_Window = sdl.SDL_Window;
 
 pub const SDL_MessageBoxFlags = c_uint;
 pub const SDL_MESSAGEBOX_ERROR: SDL_MessageBoxFlags = 16;
