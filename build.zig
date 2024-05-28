@@ -15,7 +15,7 @@ const LibType = enum {
     wrapper,
 };
 
-pub fn build(b: *std.Build) !void {
+pub noinline fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
@@ -25,8 +25,6 @@ pub fn build(b: *std.Build) !void {
     if (b.option([]const u8, "install_prefix", "Only for library users")) |pref| {
         b.resolveInstallPrefix(pref, .{});
     }
-
-    if (target.result.abi == .msvc and !shared) @panic("MSVC currently doesn't support static SDL library");
 
     const bOptions = b.addOptions();
     bOptions.addOption(LibType, "libType", libType);
@@ -40,11 +38,9 @@ pub fn build(b: *std.Build) !void {
     defer b.allocator.free(lib_path);
 
     const bindingsLib = b.createModule(.{
-        .root_source_file = b.path("src/bindings/common.zig"),
-        .target = target,
-        .optimize = optimize,
-        .imports = &.{},
+        .root_source_file = b.path("src/bindings/sdl.zig"),
     });
+    bindingsLib.addImport("sdl", bindingsLib);
 
     const lib = b.addModule("zsdl", .{
         .root_source_file = b.path("src/lib.zig"),
@@ -59,15 +55,27 @@ pub fn build(b: *std.Build) !void {
         },
     });
     lib.addImport("buildOptions", bOptions.createModule());
-    lib.addIncludePath(b.path("include"));
+    lib.addIncludePath(b.path("include/"));
     lib.addLibraryPath(b.path(lib_path));
     if (libType == .wrapper) {
         lib.addImport("bindings", bindingsLib);
     }
     if (target.result.os.tag == .windows) {
-        lib.linkSystemLibrary(if (shared) "SDL2.dll" else "SDL2", .{
-            .preferred_link_mode = if (shared) .dynamic else .static,
-        });
+        lib.linkSystemLibrary(
+            // if shared and msvc then uses "SDL2"
+            // if shared and not msvc then uses "SDL2.dll"
+            // if not shared and msvc then uses "SDL2-static"
+            // if not shared and not msvc then uses "SDL2"
+            if (shared)
+                if (target.result.abi == .msvc) "SDL2" else "SDL2.dll"
+            else if (target.result.abi == .msvc) "SDL2-static" else "SDL2",
+            .{ .preferred_link_mode = if (shared) .dynamic else .static },
+        );
+        if (target.result.abi == .msvc) {
+            lib.linkSystemLibrary("Advapi32", .{});
+            lib.linkSystemLibrary("Shell32", .{});
+            lib.linkSystemLibrary("User32", .{});
+        }
         lib.linkSystemLibrary("Gdi32", .{});
         lib.linkSystemLibrary("Cfgmgr32", .{});
         lib.linkSystemLibrary("Ole32", .{});

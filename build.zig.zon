@@ -1,6 +1,6 @@
 .{
     .name = "zsdl",
-    .version = "indev-alpha",
+    .version = "0.0.0",
 
     .dependencies = .{},
 
