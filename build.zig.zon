@@ -5,6 +5,7 @@
     .dependencies = .{},
 
     .paths = .{
+        "include/",
         "libs/",
         "src/",
         "build.zig",

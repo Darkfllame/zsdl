@@ -15,7 +15,7 @@ const LibType = enum {
     wrapper,
 };
 
-pub noinline fn build(b: *std.Build) !void {
+pub fn build(b: *std.Build) !void {
     const target = b.standardTargetOptions(.{});
     const optimize = b.standardOptimizeOption(.{});
 
@@ -36,6 +36,11 @@ pub noinline fn build(b: *std.Build) !void {
         "libs", name,
     });
     defer b.allocator.free(lib_path);
+
+    if (std.fs.cwd().access(lib_path, .{})) |_| {} else |_| {
+        std.debug.print("Cannot compile zsdl to {s}\n", .{name});
+        return error.UnsupportedTargetPlatform;
+    }
 
     const bindingsLib = b.createModule(.{
         .root_source_file = b.path("src/bindings/sdl.zig"),
