@@ -61,6 +61,8 @@ pub noinline fn build(b: *std.Build) !void {
         lib.addImport("bindings", bindingsLib);
     }
     if (target.result.os.tag == .windows) {
+        // windows is a special one, not in my heart tho, dev
+        // on windows is like hell: forever stuck to suffer
         lib.linkSystemLibrary(
             // if shared and msvc then uses "SDL2"
             // if shared and not msvc then uses "SDL2.dll"
