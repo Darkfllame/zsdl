@@ -1,9 +1,0 @@
-{
-    "terminal.integrated.env.windows": {
-        "PATH": "${env:PATH};C:\\Zig64;C:\\git\\bin\\git.exe",
-    },
-    "zig.buildArgs": [
-        "-Dshared",
-        "-Dtype=wrapper"
-    ]
-}

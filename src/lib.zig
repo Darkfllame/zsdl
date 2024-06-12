@@ -24,8 +24,23 @@ const std = @import("std");
 const SDL = @This();
 
 test "initialization" {
+    if (buildOptins.libType == .wrapper) {
+        try wrapperTest();
+    } else {
+        try bindingTest();
+    }
+}
+
+fn wrapperTest() !void {
     try SDL.init(SDL.InitFlags.EVERYTHING);
     defer SDL.quit();
 
     std.debug.print("{any}\n", .{SDL.wasInit(.{}).state});
+}
+
+fn bindingTest() !void {
+    try SDL.SDL_Init(SDL.SDL_INIT_EVERYTHING);
+    defer SDL.SDL_Quit();
+
+    std.debug.print("{any}\n", .{SDL.SDL_WasInit(0) > 0});
 }
