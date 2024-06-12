@@ -1,4 +1,4 @@
-const sdl = @import("sdl");
+const sdl = @import("sdl.zig");
 
 const SDL_bool = sdl.SDL_bool;
 const Uint8 = sdl.Uint8;

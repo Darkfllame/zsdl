@@ -1,4 +1,4 @@
-const sdl = @import("sdl");
+const sdl = @import("sdl.zig");
 
 const Sint32 = sdl.Sint32;
 const Uint64 = sdl.Uint64;

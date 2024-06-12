@@ -9,7 +9,6 @@ pub const BlendMode = enum(c_uint) {
     Mod = sdl.SDL_BLENDMODE_MOD,
     Mul = sdl.SDL_BLENDMODE_MUL,
     Invalid = sdl.SDL_BLENDMODE_INVALID,
-    _,
 };
 
 pub const BlendOperation = enum(c_uint) {

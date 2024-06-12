@@ -1,4 +1,4 @@
-const sdl = @import("sdl");
+const sdl = @import("sdl.zig");
 
 const Sint64 = sdl.Sint64;
 const SDL_TouchID = sdl.SDL_TouchID;

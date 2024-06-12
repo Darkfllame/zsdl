@@ -1,4 +1,4 @@
-const sdl = @import("sdl");
+const sdl = @import("sdl.zig");
 
 const SDL_bool = sdl.SDL_bool;
 const Sint32 = sdl.Sint32;
@@ -9,7 +9,7 @@ pub const SDL_TimerCallback = *const fn (interval: Uint32, param: ?*anyopaque) U
 pub const SDL_TimerID = c_int;
 
 pub inline fn SDL_TICKS_PASSED(A: Uint32, B: Uint32) bool {
-    return @as(Sint32, B -% A) <= 0;
+    return @as(Sint32, @truncate(B -% A)) <= 0;
 }
 
 pub extern fn SDL_GetTicks() Uint32;

@@ -1,4 +1,4 @@
-const sdl = @import("sdl");
+const sdl = @import("sdl.zig");
 
 pub inline fn SDL_QuitRequested() bool {
     sdl.SDL_PumpEvents();

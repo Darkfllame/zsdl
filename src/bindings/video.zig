@@ -1,4 +1,4 @@
-const sdl = @import("sdl");
+const sdl = @import("sdl.zig");
 
 const SDL_bool = sdl.SDL_bool;
 const Uint16 = sdl.Uint16;
@@ -27,11 +27,11 @@ pub inline fn SDL_WINDOWPOS_ISCENTERED(X: c_int) bool {
 
 pub const SDL_HitTest = *const fn (window: *SDL_Window, area: *const SDL_Point, data: ?*anyopaque) callconv(.C) SDL_HitTestResult;
 pub const SDL_DisplayMode = extern struct {
-    format: Uint32 = @import("std").mem.zeroes(Uint32),
-    w: c_int = @import("std").mem.zeroes(c_int),
-    h: c_int = @import("std").mem.zeroes(c_int),
-    refresh_rate: c_int = @import("std").mem.zeroes(c_int),
-    driverdata: ?*anyopaque = @import("std").mem.zeroes(?*anyopaque),
+    format: Uint32,
+    w: c_int,
+    h: c_int,
+    refresh_rate: c_int,
+    driverdata: ?*anyopaque,
 };
 pub const SDL_Window = opaque {};
 
