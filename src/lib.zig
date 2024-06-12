@@ -40,5 +40,5 @@ inline fn wrapperTest() !void {
     try SDL.init(SDL.InitFlags.EVERYTHING);
     defer SDL.quit();
 
-    std.debug.assert(SDL.wasInit(.{}).state);
+    std.debug.assert(SDL.wasInit(.{}).state > 0);
 }

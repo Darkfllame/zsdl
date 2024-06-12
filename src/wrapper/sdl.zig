@@ -70,7 +70,8 @@ pub const InitFlags = packed struct {
     }
 };
 pub const InitState = packed union {
-    state: bool,
+    /// State, use `> 0` to check if sdl is initialized
+    state: u32,
     flags: InitFlags,
 
     comptime {
